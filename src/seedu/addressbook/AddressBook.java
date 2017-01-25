@@ -37,7 +37,7 @@ import java.util.Set;
  **/
 public class AddressBook {
 
-    /**
+	/**
      * Default file path used if the user doesn't provide the file name.
      */
     private static final String DEFAULT_STORAGE_FILEPATH = "addressbook.txt";
@@ -106,6 +106,8 @@ public class AddressBook {
                                                       + PERSON_DATA_PREFIX_EMAIL + "EMAIL";
     private static final String COMMAND_ADD_EXAMPLE = COMMAND_ADD_WORD + " John Doe p/98765432 e/johnd@gmail.com";
 
+    private static final String COMMAND_ENTERED = "Command entered:";
+    
     private static final String COMMAND_FIND_WORD = "find";
     private static final String COMMAND_FIND_DESC = "Finds all persons whose names contain any of the specified "
                                         + "keywords (case-sensitive) and displays them as a list with index numbers.";
@@ -237,7 +239,7 @@ public class AddressBook {
      * Echoes the user input back to the user.
      */
     private static void echoUserCommand(String userCommand) {
-        showToUser("[Command entered:" + userCommand + "]");
+        showToUser("[" + COMMAND_ENTERED + userCommand + "]");
     }
 
     /**
