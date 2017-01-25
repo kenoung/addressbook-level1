@@ -140,12 +140,7 @@ public class AddressBook {
     /* We use a HashMap to store details of a person. Use enum as keys.
      */
     private enum PersonProperty {NAME, EMAIL, PHONE};
-
-    /**
-     * The number of data elements for a single person.
-     */
-    private static final int PERSON_DATA_COUNT = 3;
-
+    
     /**
      * Offset required to convert between 1-indexing and 0-indexing.COMMAND_
      */
