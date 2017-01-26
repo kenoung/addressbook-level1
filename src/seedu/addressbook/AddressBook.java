@@ -365,24 +365,28 @@ public class AddressBook {
         final String[] commandTypeAndParams = splitCommandWordAndArgs(userInputString);
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
-        switch (commandType) {
-        case COMMAND_ADD_WORD:
-            return executeAddPerson(commandArgs);
-        case COMMAND_FIND_WORD:
-            return executeFindPersons(commandArgs);
-        case COMMAND_LIST_WORD:
-            return executeListAllPersonsInAddressBook();
-        case COMMAND_DELETE_WORD:
-            return executeDeletePerson(commandArgs);
-        case COMMAND_CLEAR_WORD:
-            return executeClearAddressBook();
-        case COMMAND_HELP_WORD:
-            return getUsageInfoForAllCommands();
-        case COMMAND_EXIT_WORD:
-            executeExitProgramRequest();
-        default:
-            return getMessageForInvalidCommandInput(commandType, getUsageInfoForAllCommands());
-        }
+        return executeCommandByType(commandType, commandArgs);
+    }
+
+    public static String executeCommandByType(final String commandType, final String commandArgs) {
+    	switch (commandType) {
+    	case COMMAND_ADD_WORD:
+    		return executeAddPerson(commandArgs);
+    	case COMMAND_FIND_WORD:
+    		return executeFindPersons(commandArgs);
+    	case COMMAND_LIST_WORD:
+    		return executeListAllPersonsInAddressBook();
+    	case COMMAND_DELETE_WORD:
+    		return executeDeletePerson(commandArgs);
+    	case COMMAND_CLEAR_WORD:
+    		return executeClearAddressBook();
+    	case COMMAND_HELP_WORD:
+    		return getUsageInfoForAllCommands();
+    	case COMMAND_EXIT_WORD:
+    		executeExitProgramRequest();
+    	default:
+    		return getMessageForInvalidCommandInput(commandType, getUsageInfoForAllCommands());
+    	}
     }
 
     /**
