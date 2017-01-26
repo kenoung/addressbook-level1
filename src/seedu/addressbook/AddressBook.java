@@ -486,13 +486,24 @@ public class AddressBook {
      */
     private static ArrayList<HashMap<PersonProperty, String>> getPersonsWithNameContainingAnyKeyword(Collection<String> keywords) {
         final ArrayList<HashMap<PersonProperty, String>> matchedPersons = new ArrayList<>();
+        findPersons(keywords, matchedPersons);
+        return matchedPersons;
+    }
+
+    public static void findPersons(Collection<String> keywords,
+            final ArrayList<HashMap<PersonProperty, String>> matchedPersons) {
         for (HashMap<PersonProperty, String> person : getAllPersonsInAddressBook()) {
             final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
-            if (!Collections.disjoint(wordsInName, keywords)) {
-                matchedPersons.add(person);
-            }
+            addPersonIfNameMatches(keywords, matchedPersons, person, wordsInName);
         }
-        return matchedPersons;
+    }
+
+    public static void addPersonIfNameMatches(Collection<String> keywords,
+            final ArrayList<HashMap<PersonProperty, String>> matchedPersons, HashMap<PersonProperty, String> person,
+            final Set<String> wordsInName) {
+        if (!Collections.disjoint(wordsInName, keywords)) {
+            matchedPersons.add(person);
+        }
     }
 
     /**
