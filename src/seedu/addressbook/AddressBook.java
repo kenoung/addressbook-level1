@@ -480,13 +480,28 @@ public class AddressBook {
      */
     private static ArrayList<HashMap<PersonProperty, String>> getPersonsWithNameContainingAnyKeyword(Collection<String> keywords) {
         final ArrayList<HashMap<PersonProperty, String>> matchedPersons = new ArrayList<>();
+        Collection<String> lowerCaseKeywords = setStringsToLowerCase(keywords);
         for (HashMap<PersonProperty, String> person : getAllPersonsInAddressBook()) {
             final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (!Collections.disjoint(setStringsToLowerCase(wordsInName), lowerCaseKeywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    /**
+     * Takes as input a collection of Strings and returns a new collection with the Strings in lowercase.
+     * 
+     * @param strings is a collection of Strings
+     * @return lowerCaseStrings is a collection of lower case Strings
+     */
+    private static Collection<String> setStringsToLowerCase(Collection<String> strings) {
+        Collection<String> lowerCaseStrings = new HashSet<>();
+        for (String string : strings) {
+            lowerCaseStrings.add(string.toLowerCase());
+        }
+        return lowerCaseStrings;
     }
 
     /**
